@@ -1,5 +1,11 @@
 .form
   .form-item
-    =fa_icon 'line-chart',class:'icon'
-    =fa_icon 'clock-o',class:'style'
-    =fa_icon 'cog',class:'font'
+    %li.list
+      = link_to graphs_path do
+        =fa_icon 'line-chart',class:'icon'
+    %li.list
+      = link_to new_number_path do
+        =fa_icon 'calculator',class:'style'
+    %li.list
+      =link_to edit_user_path(current_user) do 
+        =fa_icon 'cog',class:'font'

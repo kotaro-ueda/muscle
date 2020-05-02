@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Chart.js レーダーチャート</title>
+<style>
+    h1       { font-size:  200%; color: black;  text-align: center }
+    table, td, th {border: 1px silver solid; border-collapse: collapse;}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+</head>
+
+<body onLoad = "fillData()">
+
+<h1>バランス管理</h1>
+<hr>
+
+<div  style="margin-left:25%">
+<canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+<div  style="margin-left:23%">
+<h3>入力フォーム</h3>
+<form name="input">
+<table><tbody>
+<tr><td></td>
+<td><input type="text" size="13" value="ベンチプレス"></td>
+<td><input type="text" size="13" value="スクワット"></td>
+<td><input type="text" size="13" value="デッドリフト"></td>
+</tr></tr>
+<tr><td><input type="text" size="13" value=""></td></td>
+<td><input type="text" size="13" value="100"></td>
+<td><input type="text" size="13" value="90"></td>
+<td><input type="text" size="13" value="80"></td>
+</tbody></table>
+<div  style="disply:flex">
+  <input type="button" value="実行" onclick="fillData()" class="input-btn">
+  <input type="button" value="トップページに戻る" onclick="location.href='./'" class="top-btn">
+</div>
+</form>
+</div>
+
+<script>
+function fillData() {
+
+  var theme = [];
+
+  for (var j=0; j<3; j++) {
+    theme[j] = document.input.elements[j].value;
+  }
+
+  var data = [];
+
+  for (j=0; j<3; j++) {
+    data[j] = document.input.elements[4+j].value;
+  }
+
+  // ======== 系列別固定パラメータ
+  var lineColor = "rgba(255,204,0,1)";
+  var mainColor = "rgba(255,204,0,0.4)";
+
+  // ======================= レーダーチャート表示 ====================
+
+  var ctx = document.getElementById("myChart")
+  var myChart = new Chart(ctx, {
+    type: "radar",    // グラフの種類 レーダーチャート
+    data: {
+      labels:  theme,  // 軸のラベル
+
+      // ========= 各系列個別 ===========
+      datasets: [
+        {
+          label: ["植田"],
+          data: data,
+          backgroundColor: mainColor,             // 線の下の塗りつぶしの色
+          borderColor: lineColor,                 // 線の色
+          pointBorderColor: lineColor,            // 点の境界線の色
+          pointBackgroundColor: lineColor,        // 点の塗りつぶし色
+          borderWidth: 2,                       // 線の幅
+          pointStyle: "circle",                 // 点の形状
+          pointRadius: 2,                       // 点形状の半径
+          pointBorderWidth: 2,                  // 点の境界線の幅
+        }
+      ]
+    },
+
+    // ========= 全系列共通（これらは全て固定） ==========
+    options: {
+      responsive: false,
+      title: {                 // タイトル
+        display: true,
+        fontSize: 18,
+        text: "レーダーチャート"
+      },
+      legend: {
+          position: 'bottom'   // 凡例の表示位置
+      },
+      scale: {
+        pointLabels: {       // 軸のラベル（"国語"など）
+          fontSize: 14,         // 文字の大きさ
+          fontColor: "black"    // 文字の色
+        },
+        ticks: {             // 目盛り
+          min: 0,              // 最小値
+          max: 100,            // 最大値
+          stepSize: 20,        // 目盛の間隔
+          fontSize: 0,        // 目盛り数字の大きさ
+          fontColor: "black"  // 目盛り数字の色
+        },
+        angleLines: {        // 軸（放射軸）
+          display: true,
+          color: "gray"
+        },
+        gridLines: {         // 補助線（目盛の線）
+          display: true,
+          color: "gray"
+          }
+        }
+      }
+  });
+}
+</script>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<%#  
+ <h1 class="title">日々の記録</h1>
+
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>グラフ</title> 
+  </head>
+  <body>
+    <canvas id="myLineChart" width="200" height="100"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   
+    <script>
+        $(function(){
+          // function buildJS(posts){
+              var ctx = document.getElementById("myLineChart");
+              var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
+                  datasets: [
+                    {
+                      label: '重量',
+                      data: [35, 34, 37, 35, 34, 35, 34, 25],
+                      borderColor: "rgba(255,0,0,1)",
+                      backgroundColor: "rgba(0,0,0,0)"
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        suggestedMin: 0,
+                        stepSize: 10,
+                        callback: function(value, index, values){
+                          return  value +  'kg'
+                        }
+                      }
+                    }]
+                  },
+                }
+              });
+              $(function(){
+                $("#btn").on('click', function(e){
+                  e.preventDefault()
+                  $.ajax({
+                  url: "/users",
+                  type: 'GET',
+                  dataType: 'json',
+                
+                  })
+                  .done(function(posts){
+                   var html = buildJS(posts);
+                   $('.myLineChart').append(html);
+                   })
+                 })
+               });
+          // }
+       });
+    </script>
+
+    <button type="button" id="btn">更新</button>
+  </body>
+
+</html> %>

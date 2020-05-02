@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## graph_usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|graph_id|integer|null: false, foreign_key: true|
 
-* Ruby version
+### Association
+- belongs_to :graph
+- belongs_to :user
 
-* System dependencies
+## users table
 
-* Configuration
+|Culumn|Type|Opton|
+|------|----|-----|
+|encrypted_password|string| null: false|
+|name|string|index: true, null:false, unque: true|
+|email|string|null: false|
+|goal|string|null: false|
 
-* Database creation
+### Association
+- has_many :graphs, through: graphs_users
+- has_many :graphs_users
 
-* Database initialization
+## graphs table
 
-* How to run the test suite
+|Culumn|Type|Opton|
+|------|----|-----|
+|weight|string| null: false|
+|title|string|null:false|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- has_many :users, through: graphs_users
+- has_many :graphs_users
 
-* Deployment instructions
+## numbers table
 
-* ...
+|Culumn|Type|Opton|
+|------|----|-----|
+|weight|string| null: false|
+|parsent|string|null:false|
+|result|string|null:false|
