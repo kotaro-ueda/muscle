@@ -60,3 +60,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'jquery-rails'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
