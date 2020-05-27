@@ -1,15 +1,5 @@
 # README
 
-## graph_usersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|graph_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :graph
-- belongs_to :user
 
 ## users table
 
@@ -21,19 +11,7 @@
 |goal|string|null: false|
 
 ### Association
-- has_many :graphs, through: graphs_users
-- has_many :graphs_users
-
-## graphs table
-
-|Culumn|Type|Opton|
-|------|----|-----|
-|weight|string| null: false|
-|title|string|null:false|
-
-### Association
-- has_many :users, through: graphs_users
-- has_many :graphs_users
+- has_many : blogs
 
 ## numbers table
 
@@ -42,3 +20,14 @@
 |weight|string| null: false|
 |parsent|string|null:false|
 |result|string|null:false|
+
+## blogs table
+
+|Culumn|Type|Opton|
+|------|----|-----|
+|title|string| null: false|
+|content|text|null:false|
+|start_time|datetime|null:false|
+
+### Association
+- belongs_to : user

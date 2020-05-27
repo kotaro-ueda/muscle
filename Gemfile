@@ -58,8 +58,8 @@ gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'devise'
 gem 'pry-rails'
-gem 'chart-js-rails', '~> 0.1.4'
 gem 'jquery-rails'
+gem 'simple_calendar', '~> 2.0'
 
 group :production do
   gem 'unicorn', '5.4.1'

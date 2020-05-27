@@ -1,0 +1,18 @@
+.wrap
+  .main
+    .box
+      .main-title
+        予定を記入
+    .main-form
+      = form_for @blog do |f|
+        .title
+          = f.label :タイトル, class: "title-box"
+          = f.text_field :title, class: "title-item"
+        .time
+          = f.label :予定日, class: "time-box"
+          = f.datetime_select :start_time, class: "time-item"
+        .content
+          = f.label :メモ, class: "text-title"
+          = f.text_area :content, class: "text-box"
+        .submit
+          = f.submit :予定を追加, class: "submit-btn"

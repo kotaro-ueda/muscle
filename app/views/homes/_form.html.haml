@@ -1,8 +1,11 @@
 .form
   .form-item
     %li.list
-      = link_to graphs_path do
-        =fa_icon 'line-chart',class:'icon'
+      - if user_signed_in?
+        = link_to blogs_path do
+          =fa_icon 'line-chart',class:'icon'
+      - else
+        = render root_path
     %li.list
       = link_to new_number_path do
         =fa_icon 'calculator',class:'style'
