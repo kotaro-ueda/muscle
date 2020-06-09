@@ -65,6 +65,8 @@ gem 'devise'
 gem 'pry-rails'
 gem 'jquery-rails'
 gem 'simple_calendar', '~> 2.0'
+gem 'rails-i18n', '~> 5.1'
+
 
 group :production do
   gem 'unicorn', '5.4.1'
