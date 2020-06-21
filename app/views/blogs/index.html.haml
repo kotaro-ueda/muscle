@@ -1,5 +1,7 @@
 %p#notice= notice
 .date-title
+  = link_to root_path do
+    =fa_icon 'remove',class:'batu'
   .date-title-write
     %h1 
       =current_user.name
