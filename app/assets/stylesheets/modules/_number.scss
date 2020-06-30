@@ -44,8 +44,10 @@
     .btn-form-action {
       color: white;
       background-color: blue;
-      width: 100px;
+      width: 200px;
       box-shadow: 3px 3px 3px #666666;
+      height: 50px;
+      border-radius: 6px;
     }
     .btn-form-action:hover {
       color: blue;
@@ -66,6 +68,13 @@
 .default {
   height: 30px;
   width: 200px;
-  margin-left: 43%;
+  margin-left: 45%;
   margin-top: 40px;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  a:hover {
+    color: lime;
+  }
 }
